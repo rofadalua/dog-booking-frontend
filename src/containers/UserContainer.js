@@ -8,6 +8,7 @@ import Users from '../components/Users'
 import UserAccount from '../components/UserAccount'
 import UserForm from '../components/UserForm'
 import NavBar from '../components/NavBar'
+import Home from '../components/Home'
 
 
 class UserContainer extends React.Component{
@@ -17,11 +18,12 @@ class UserContainer extends React.Component{
     render(){
         return(
             <div>
-                <NavBar/>
+                <NavBar />
                 <Switch>
-                    <Route path='/users/new' component={UserForm} />
-                    <Route path='/users/:id' render={(routerProps) => <UserAccount {...routerProps}users={this.props.users}/>} />
-                    <Route path='/users' render={(routerProps) => <Users {...routerProps}users={this.props.users}/>} />
+                    <Route exact path='/users/new' component={UserForm} />
+                    <Route exact path='/users/:id' render={(routerProps) => <UserAccount {...routerProps}/>} />
+                    <Route exact path='/users' render={() => <Users />} />
+                    <Route exact path='/' render={() => <Home />} />
                 </Switch>
                 
             </div>

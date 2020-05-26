@@ -1,14 +1,11 @@
-export function fetchUser() {
+export function singleUser(userId) {
     return(dispatch) => {
         dispatch({type: 'LOADING'})
-        fetch('http://localhost:3000/api/b1/users/')
+        fetch(`http://localhost:3000/api/b1/users/${userId}`)
         .then(res => res.json())
         .then(users => dispatch({
-            type: 'FETCH_USER',
+            type: 'SINGLE_USER',
             payload: users
         }))
  }
 }
-
-
-//dispatching an action object to the reducer 

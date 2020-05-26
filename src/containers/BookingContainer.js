@@ -8,8 +8,8 @@ class BookingContainer extends React.Component {
   render() {
     return (
       <div>
-          <BookingForm users={this.props.users}/><br/>
-          <Bookings bookings={this.props.users && this.props.users.bookings}/>
+          <BookingForm user={this.props.user}/><br/>                    
+          <Bookings bookings={this.props.user && this.props.user.bookings}/>
       </div>
 
     )

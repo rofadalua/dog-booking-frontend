@@ -2,20 +2,32 @@ import React from 'react'
 import {Redirect} from 'react-router-dom'
 import BookingContainer from '../containers/BookingContainer'
 import UserEdit from './UserEdit'
+import {connect} from 'react-redux'
  
+
 
 const UserAccount = (props) => {
   
-    let users = props.users[props.match.params.id - 1]  //using my routerprops and matching the user id 
+    const getsingleUser = () => {
+        console.log(props.users)
+        for (let i = 0; i < props.users.length; i++){
+            console.log(props.match.params.id, props.users[i].id)
+            if (Number(props.match.params.id) === props.users[i].id)
+                return props.users[i]
+        } 
+        return null 
+    }
+    let user = getsingleUser()
+   
      return(
          <div>
              <h2>
-                 {users ? null : <Redirect to='/users'/>}
-                 {users ? users.first_name : null} {users ? users.last_name :null}
+                 {user ? null : <Redirect to='/users'/>}
+                 {user ? user.first_name : null} {user ? user.last_name :null}
              </h2>
-                 <BookingContainer users={users}/><br/>
-                 <h4>Edit Booking</h4>
-                 <UserEdit users={users}/>
+                 <BookingContainer user={user}/><br/>
+                 <h4>Booking Form</h4>
+                 <UserEdit user={user}/>
         </div>
         
     )
@@ -23,5 +35,13 @@ const UserAccount = (props) => {
 }
 
 
-export default UserAccount
+let mapStateToProps = (state) => {
+    return {
+        users: state.users,
+        loading: state.loading
+    }
+}
+
+
+export default connect (mapStateToProps) (UserAccount)
 //Redirect works with link to only -//this account will show only if the link to is on users and if passing through routeProps
