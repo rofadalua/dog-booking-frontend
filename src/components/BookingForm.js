@@ -21,7 +21,7 @@ class BookingForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.addBooking(this.state, this.props.user.id)   //this.id?
+        this.props.addBooking(this.state, this.props.user.id)   
         this.setState({
             pet_name: '',
             phone_number:'',

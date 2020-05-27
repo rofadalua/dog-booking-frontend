@@ -1,4 +1,4 @@
-// its gonna have state so we use class not functional component
+// its gonna have state, we use class not functional component
 import React from 'react'
 import {connect} from 'react-redux'
 import {addUser} from '../actions/addUser'
